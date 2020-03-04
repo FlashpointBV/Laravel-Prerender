@@ -1,22 +1,11 @@
-<?php namespace Nutsweb\LaravelPrerender;
+<?php
 
-use App;
-use GuzzleHttp\Client;
-use Illuminate\Foundation\Http\Kernel;
+namespace Flashpoint\LaravelPrerender;
+
 use Illuminate\Support\ServiceProvider;
 
 class LaravelPrerenderServiceProvider extends ServiceProvider
 {
-
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
-
-    protected $package = 'nutsweb/laravel-prerender';
-
     /**
      * Bootstrap the application events.
      *
@@ -28,21 +17,16 @@ class LaravelPrerenderServiceProvider extends ServiceProvider
             __DIR__ . '/../config/prerender.php' => config_path('prerender.php')
         ], 'config');
 
-        if ($this->app['config']->get('prerender.enable')) {
-            /** @var Kernel $kernel */
-            $kernel = $this->app['Illuminate\Contracts\Http\Kernel'];
-            $kernel->pushMiddleware(PrerenderMiddleware::class);
+        if (config('prerender.enable')) {
+            $this->app['router']->pushMiddleware(PrerenderMiddleware::class);
         }
     }
 
     /**
-     * Register the service provider.
-     *
-     * @return void
+     * @inheritDoc
      */
     public function register()
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/prerender.php', 'prerender');
     }
-
 }

@@ -1,23 +1,22 @@
 {
-    "name": "nutsweb/laravel-prerender",
+    "name": "flashpoint/laravel-prerender",
     "description": "Laravel middleware for prerendering javascript-rendered pages on the fly for SEO",
     "keywords": ["laravel", "prerender"],
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Jeroen Noten",
-            "email": "jeroennoten@me.com"
-        }
-    ],
     "require": {
-        "php": ">=5.5.9",
-        "illuminate/support": "~5.0.14|~5.1",
+        "php": ">=7.2.5",
         "guzzlehttp/guzzle": "^6.0",
-        "symfony/psr-http-message-bridge": "^1.0"
+        "symfony/psr-http-message-bridge": "^2.0",
+        "illuminate/container": "^6.0|^7.0",
+        "illuminate/contracts": "^6.0|^7.0",
+        "illuminate/support": "^6.0|^7.0"
     },
     "autoload": {
         "psr-4": {
-            "Nutsweb\\LaravelPrerender\\": "src/"
+            "Flashpoint\\LaravelPrerender\\": "src/"
         }
+    },
+    "config": {
+        "sort-packages": true
     }
 }
