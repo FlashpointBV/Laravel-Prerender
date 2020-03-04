@@ -18,7 +18,7 @@ class LaravelPrerenderServiceProvider extends ServiceProvider
         ], 'config');
 
         if (config('prerender.enable')) {
-            $this->app['router']->pushMiddleware(PrerenderMiddleware::class);
+            $this->app['router']->pushMiddlewareToGroup('web', PrerenderMiddleware::class);
         }
     }
 
